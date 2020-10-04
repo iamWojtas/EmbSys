@@ -1,28 +1,28 @@
 
-public class Rectangle {
+public class Rectangle extends Figure{
 
-	private Point origin;
-	private int width;
-	private int length;
+
+	protected int width;
+	protected int length;
 	
 	public Rectangle(Point org) {
-		origin = org;
+		super(org);
+		this.setWidth(1);
+		this.setLength(2);
 	}
 	
 	public Rectangle(int w, int l) {
-		setWidth(w);
-		setLength(l);
-		origin = new Point(0,0);
+		super(0,0);
+		this.setWidth(w);
+		this.setLength(l);
+
 	}
 	
-	public void getOrigin() {
-		System.out.println("Origin: "+this.origin.getX()+", "+this.origin.getX());
-	}
-	
-	public int getPerimetre() {
+
+	public double getPerimeter() {
 		return 2*this.length+2*this.width;
 	}
-	public int getSurface() {
+	public double getSurface() {
 		return this.width*this.length;
 	}
 
@@ -42,4 +42,28 @@ public class Rectangle {
 		this.length = length;
 	}
 	
+	public String toString() {
+		String a = new String();
+		String hor = new String();
+		String ver = new String();
+		
+		hor = "+";
+		ver = "|";
+		for (int g = 0; g < getWidth(); g++) {
+			 hor += "--";
+			 ver += "  ";
+		}
+		hor += "+";
+		ver += "|";
+		
+		a += hor + "\n";
+		for (int g = 0 ; g < getLength(); g++) {
+			a += ver;
+			a += "\n";
+		}
+		a += hor;
+		
+		
+		return a;
+	}
 }
