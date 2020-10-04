@@ -12,6 +12,7 @@ public class Test {
 		
 		Square sq1 = new Square(4);
 		
+		
 
 //		System.out.println();
 //		System.out.println(p1.getY());
