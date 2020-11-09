@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Rectangle extends Figure{
 
@@ -18,6 +20,11 @@ public class Rectangle extends Figure{
 
 	}
 	
+	public Rectangle(int px, int py, Color c) {
+		super(px,py,c);		
+		this.setWidth(0);
+		this.setLength(0);
+	}
 
 	public double getPerimeter() {
 		return 2*this.length+2*this.width;
@@ -65,5 +72,16 @@ public class Rectangle extends Figure{
 		
 		
 		return a;
+	}
+
+	public void setBoundingBox(int heightBB, int widthBB) {
+		setLength(heightBB);
+		setWidth(widthBB);
+		
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(this.c);
+		g.fillRect(this.origin.a, this.origin.b, this.length, this.width);
 	}
 }

@@ -12,12 +12,19 @@ public class Fenetre extends JFrame{
 		Container contentPane = getContentPane();
 		JMenuBar m = new JMenuBar();
 		
+		Drawing myDrawing = new Drawing();
+		myDrawing.addMouseListener(myDrawing);
+		myDrawing.addMouseMotionListener(myDrawing);
+		contentPane.add(myDrawing,"Center");
+		
 		JMenu menu1 = new JMenu("Files");
 		JMenuItem Open = new JMenuItem("Open");
 		menu1.add(Open);
 		
-		//JMenuItem New = new JMenuItem("New");
-		menu1.add(new JMenuItem("New"));
+		JMenuItem New = new JMenuItem("New");
+		Listeners listenerNew = new Listeners(myDrawing);
+		New.addActionListener(listenerNew);
+		menu1.add(New);
 
 		JMenuItem Save = new JMenuItem("Save");
 		menu1.add(Save);
@@ -49,9 +56,7 @@ public class Fenetre extends JFrame{
 		ColorPanel.setLayout(new GridLayout(2,4));
 		ToolPanel.setLayout(new GridLayout(2,2));
 
-		Drawing myDrawing = new Drawing();
-		contentPane.add(myDrawing,"Center");
-
+		
 		JButton Noir = new JButton("Noir");
 		Noir.setBackground(Color.black);
 		Listeners listenerNo = new Listeners(myDrawing);

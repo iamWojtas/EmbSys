@@ -1,15 +1,24 @@
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Ellipse extends Figure{
-	protected double axis1;
-	protected double axis2;
+	protected int axis1;
+	protected int axis2;
 	
-	public Ellipse(double ax1, double ax2) {
+	public Ellipse(int ax1, int ax2) {
 		super();
 		this.axis1 = ax1;
 		this.axis2 = ax2;
 	}
+	
+	public Ellipse(int px, int py, Color c) {
+		super(px,py,c);
+		this.axis1 = 0;
+		this.axis2 = 0;
+	}	
 	
 	public double getPerimeter() {
 		return 2*3.1415d*sqrt((pow(this.axis1,2)+pow(this.axis2,2))/2);
@@ -33,5 +42,15 @@ public class Ellipse extends Figure{
 
 	public void setAx2(int ax2) {
 		this.axis2 = ax2;
+	}
+
+	public void setBoundingBox(int heightBB, int widthBB) {
+		setAx1(heightBB);
+		setAx2(widthBB);
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(this.c);
+		g.fillOval(this.origin.a, this.origin.b, this.axis1, this.axis2);
 	}
 }
