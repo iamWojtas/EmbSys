@@ -2,8 +2,17 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.print.attribute.standard.OutputDeviceAssigned;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,8 +22,8 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		super();
 		
 		c = Color.black;
-		nameFigure = "Rectangle";
-		list = new ArrayList<Figure>();
+		this.nameFigure = "Rectangle";
+		this.list = new ArrayList<Figure>();
 		
 	}
 	@Override
@@ -26,9 +35,11 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		for(Figure figg: list) {
 			figg.draw(g);
 		}
-		
+
 	}
 
+	
+	
 	
 	private ArrayList<Figure> list;
 	private Color c;
@@ -70,7 +81,6 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	}
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		System.out.println("I pressed");
 		
 		this.xc = arg0.getX();
 		this.yc = arg0.getY();
@@ -105,12 +115,85 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		this.yr = arg0.getY() - this.yc;
 		this.list.get(list.size()-1).setBoundingBox(Math.abs(this.xr), Math.abs(this.yr));
 		this.repaint();
-
-		System.out.println(this.xr);
 	}
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 //		System.out.println("I unpressedn't");
 
 	}
+
+	public void saveScreen() {
+	    
+		try {
+
+	        FileOutputStream file = new FileOutputStream("file.tmp");
+
+	        // Creates an ObjectOutputStream
+	        ObjectOutputStream output = new ObjectOutputStream(file);
+
+	        // writes objects to output stream
+
+			System.out.println("liczba figur: " + this.list.size());
+	        //output.writeInt(this);
+	        output.writeObject(this);
+
+			System.out.println("zapisal siurewski");
+	        output.close();
+	    }
+
+	    catch (Exception e) {
+	        e.getStackTrace();
+	        System.out.println(e);
+	    }
+	}
+	
+	public void loadScreen() {
+		System.out.println("fczytuje siurewski");
+		try {
+
+	        // Reads data using the ObjectInputStream
+	        FileInputStream fileStream = new FileInputStream("file.tmp");
+	        ObjectInputStream objStream = new ObjectInputStream(fileStream);
+
+	        
+    		
+	        Drawing tempDrawing = (Drawing) objStream.readObject();
+	        //ArrayList<Figure> tempList = (ArrayList<Figure>) objStream.readObject();
+    		//this = fff.myDrawing;
+    		this.list.removeAll(list);
+    		this.list.addAll(tempDrawing.list);
+    		this.repaint();
+
+			System.out.println("try me bihh");
+            System.out.println("The Object has been read from the file");
+                        
+            objStream.close();
+
+		}
+
+	    catch (Exception e) {
+	        e.getStackTrace();
+	        System.out.println(e);
+	        System.out.println("catch me outside howbouda");
+	        
+	    }
+	}
+	
+	public void readFileWithBuffer() {
+		try {
+			File monFichier = new File("MonTexte.txt");
+			FileReader fr = new FileReader(monFichier);
+			BufferedReader br = new BufferedReader(fr);
+			String ligne = null;
+			while ((ligne = br.readLine()) != null) {
+				System.out.println(ligne);
+			}
+			br.close() ;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace() ;
+		}
+
+	}
+
 }

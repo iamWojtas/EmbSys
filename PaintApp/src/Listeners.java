@@ -2,12 +2,19 @@ import java.awt.Color;
 import java.awt.event.*;
 
 public class Listeners implements ActionListener {
-	
-	private final Drawing myDrawing;
+
+	private Drawing myDrawing;
+	private Fenetre myFenetre;
 	
 	public Listeners(final Drawing myDrawing) {
 		super();
 		this.myDrawing = myDrawing;
+	}
+	
+	public Listeners(final Drawing myDrawing,Fenetre myFenetre) {
+		super();
+		this.myDrawing = myDrawing;
+		this.myFenetre = myFenetre;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -73,6 +80,12 @@ public class Listeners implements ActionListener {
 		//menu
 		else if(cmd.equals("New")) {
 			myDrawing.newDrawing();
+		}
+		else if(cmd.equals("Save")) {
+			myDrawing.saveScreen();
+		}
+		else if(cmd.equals("Load")) {
+			myDrawing.loadScreen();
 		}
 		else {
 			System.err.println(cmd);

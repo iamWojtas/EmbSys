@@ -1,7 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public abstract class Figure {
+public abstract class Figure implements Serializable{
 	protected Point origin;
 	protected Color c;
 	
@@ -41,4 +46,6 @@ public abstract class Figure {
 	
 	public abstract void setBoundingBox(int heightBB, int widthBB);
 	public abstract void draw(Graphics g);
+	
+	
 }

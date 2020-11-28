@@ -1,8 +1,15 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Fenetre extends JFrame{
+	private Drawing myDrawing;
+
 	Fenetre(String title){
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,14 +35,24 @@ public class Fenetre extends JFrame{
 
 		JMenuItem Save = new JMenuItem("Save");
 		menu1.add(Save);
+		Listeners listenerSave = new Listeners(myDrawing,this);
+		Save.addActionListener(listenerSave);
+		
+		JMenuItem Load = new JMenuItem("Load");
+		menu1.add(Load);
+		Listeners listenerLoad = new Listeners(myDrawing,this);
+		Load.addActionListener(listenerLoad);
+		
+		
 		menu1.addSeparator();
 		
 		JMenuItem Quit = new JMenuItem("Quit");
 		menu1.add(Quit);
-		Listeners listenerQuit = new Listeners(new Drawing());
+		Listeners listenerQuit = new Listeners(myDrawing);
 		Quit.addActionListener(listenerQuit);
 		
 		Save.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		Load.setAccelerator(KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 
 		m.add(menu1);
 		
@@ -127,6 +144,8 @@ public class Fenetre extends JFrame{
 		Rectangle.addActionListener(listener04);
 		ToolPanel.add(Rectangle);
 		
+
+		
 //		pan1.add(new JButton("1"));
 //		pan1.add(new JButton("2"));
 		
@@ -149,6 +168,25 @@ public class Fenetre extends JFrame{
 		contentPane.add(pan1,"South");
 		
 		setVisible(true);
+		
+		File f = new File ("MyCode.txt");
+		File rep = new File ("Chapter7");
+		rep.mkdir ();
+
+		if (rep.isDirectory ()) {
+			String [] contentsRep = rep.list ();
+			for (int i = 0; i <contentsRep.length; i ++) {
+				System.out.println (contentsRep [i]);
+			}
+		}
+		System.out.println (rep.getAbsolutePath ());
+		boolean remove = f.delete ();
+		
+	}
+	
+
+	public void changeDrawing(Drawing d) {
+		this.myDrawing = d;
 	}
 
 }
