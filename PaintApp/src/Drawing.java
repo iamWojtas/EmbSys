@@ -194,6 +194,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
 	public void loadBuffer() {
 		try {
+			this.list.removeAll(list);
 			File monFichier = new File("MonTexte.txt");
 			FileReader fr = new FileReader(monFichier);
 			BufferedReader br = new BufferedReader(fr);
@@ -202,9 +203,44 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 				System.out.println(ligne);
 				String[] resultat = ligne.split(" ");
 				gimmeColor(resultat[0]);
+				String[] oregon = resultat[2].split(",");
+				this.xc = Integer.parseInt(oregon[0].substring(1));
+				this.yc = Integer.parseInt(oregon[1].substring(0, oregon[1].length()-1));
+
+				switch(resultat[1]) {
+					case "Rectangle": {
+						list.add((Figure) new Rectangle(this.xc, this.yc, this.c));
+						break;
+					}
+					case "Ellipse": {
+						list.add((Figure) new Ellipse(this.xc, this.yc, this.c));
+						break;
+					}
+					case "Square": {
+						list.add((Figure)(Rectangle) new Square(this.xc, this.yc, this.c));
+						break;
+					}
+					case "Circle": {
+						list.add((Figure)(Ellipse) new Circle(this.xc, this.yc, this.c));
+						break;
+					}
+				}
+
+				String[] theSize = resultat[3].split(",");
+				if(theSize.length ==1) {
+					this.xr = Integer.parseInt(theSize[0].substring(1),theSize[0].length()-1);
+					this.yr = Integer.parseInt(theSize[0].substring(1),theSize[0].length()-1);
+				}
+				else {
+					this.xr = Integer.parseInt(theSize[0].substring(1));
+					this.yr = Integer.parseInt(theSize[1].substring(0, theSize[1].length()-1));		
+				}
 				
-				
-				
+				this.list.get(list.size()-1).setBoundingBox(Math.abs(this.xr), Math.abs(this.yr));
+				this.repaint();
+				//this.xr = Integer.parseInt(theSize[0].substring(1));
+				//this.yr = Integer.parseInt(theSize[1].substring(0, theSize[1].length()-1));
+
 				
 			}
 			br.close() ;
