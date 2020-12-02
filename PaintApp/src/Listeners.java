@@ -87,6 +87,12 @@ public class Listeners implements ActionListener {
 		else if(cmd.equals("Load")) {
 			myDrawing.loadScreen();
 		}
+		else if(cmd.equals("SaveB")) {
+			myDrawing.saveBuffer();
+		}
+		else if(cmd.equals("LoadB")) {
+			myDrawing.loadBuffer();
+		}
 		else {
 			System.err.println(cmd);
 		}

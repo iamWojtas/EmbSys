@@ -1,0 +1,3 @@
+Black Rectangle (420,86) (175,176)
+Black Rectangle (51,73) (460,140)
+Black Rectangle (652,157) (154,140)

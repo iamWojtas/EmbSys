@@ -32,6 +32,8 @@ public class Fenetre extends JFrame{
 		Listeners listenerNew = new Listeners(myDrawing);
 		New.addActionListener(listenerNew);
 		menu1.add(New);
+		
+		menu1.addSeparator();
 
 		JMenuItem Save = new JMenuItem("Save");
 		menu1.add(Save);
@@ -43,6 +45,18 @@ public class Fenetre extends JFrame{
 		Listeners listenerLoad = new Listeners(myDrawing,this);
 		Load.addActionListener(listenerLoad);
 		
+		menu1.addSeparator();
+		
+		JMenuItem SaveB = new JMenuItem("SaveB");
+		menu1.add(SaveB);
+		Listeners listenerSaveB = new Listeners(myDrawing,this);
+		SaveB.addActionListener(listenerSaveB);
+		
+		JMenuItem LoadB = new JMenuItem("LoadB");
+		menu1.add(LoadB);
+		Listeners listenerLoadB = new Listeners(myDrawing,this);
+		LoadB.addActionListener(listenerLoadB);
+		
 		
 		menu1.addSeparator();
 		
@@ -53,6 +67,8 @@ public class Fenetre extends JFrame{
 		
 		Save.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 		Load.setAccelerator(KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		SaveB.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		LoadB.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 
 		m.add(menu1);
 		
@@ -169,18 +185,7 @@ public class Fenetre extends JFrame{
 		
 		setVisible(true);
 		
-		File f = new File ("MyCode.txt");
-		File rep = new File ("Chapter7");
-		rep.mkdir ();
-
-		if (rep.isDirectory ()) {
-			String [] contentsRep = rep.list ();
-			for (int i = 0; i <contentsRep.length; i ++) {
-				System.out.println (contentsRep [i]);
-			}
-		}
-		System.out.println (rep.getAbsolutePath ());
-		boolean remove = f.delete ();
+		
 		
 	}
 	

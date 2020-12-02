@@ -3,6 +3,8 @@ import java.awt.Graphics;
 
 public class Circle extends Ellipse {
 	
+	protected String name = "Circle";
+	
 	public Circle(int radius) {
 		super(radius,radius);
 	}
@@ -29,5 +31,17 @@ public class Circle extends Ellipse {
 	public void draw(Graphics g) {
 		g.setColor(this.c);
 		g.fillOval(this.origin.a, this.origin.b, this.axis1, this.axis2);
+	}
+
+	public String saveString() {
+		String out = new String();
+		out+=this.getColor()+" ";
+		out+=this.name+" (";
+		out+=(String.valueOf(this.origin.a)+",");
+		out+=(String.valueOf(this.origin.b)+") (");
+		out+=(String.valueOf(this.axis1)+")\n");
+
+		return out;
+		
 	}
 }

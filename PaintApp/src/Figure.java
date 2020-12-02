@@ -46,6 +46,45 @@ public abstract class Figure implements Serializable{
 	
 	public abstract void setBoundingBox(int heightBB, int widthBB);
 	public abstract void draw(Graphics g);
-	
+	public abstract String saveString();
+	public String getColor() {
+		String tempo = new String();
+		
+		switch(this.c.getRGB()) {
+		case -16777216: {
+			tempo = "Black";
+			break;
+		}
+		case -65536: {
+			tempo = "Red";
+			break;
+		}
+		case -16711936: {
+			tempo = "Green";
+			break;
+		}
+		case -16776961: {
+			tempo = "Blue";
+			break;
+		}
+		case -256: {
+			tempo = "Yellow";
+			break;
+		}
+		case -20561: {
+			tempo = "Pink";
+			break;
+		}
+		case -65281: {
+			tempo = "Magenta";
+			break;
+		}
+		case -14336: {
+			tempo = "Orange";
+			break;
+		}
+	}
+		return tempo;
+	}
 	
 }

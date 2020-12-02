@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -106,7 +108,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-
+		System.out.println(list.get(list.size()-1).saveString());
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -133,11 +135,10 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
 	        // writes objects to output stream
 
-			System.out.println("liczba figur: " + this.list.size());
 	        //output.writeInt(this);
 	        output.writeObject(this);
 
-			System.out.println("zapisal siurewski");
+			System.out.println("The image was saved to an unreadable file");
 	        output.close();
 	    }
 
@@ -148,7 +149,6 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	}
 	
 	public void loadScreen() {
-		System.out.println("fczytuje siurewski");
 		try {
 
 	        // Reads data using the ObjectInputStream
@@ -164,8 +164,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     		this.list.addAll(tempDrawing.list);
     		this.repaint();
 
-			System.out.println("try me bihh");
-            System.out.println("The Object has been read from the file");
+            System.out.println("The Object has been read from the unreadable file");
                         
             objStream.close();
 
@@ -173,13 +172,27 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
 	    catch (Exception e) {
 	        e.getStackTrace();
-	        System.out.println(e);
-	        System.out.println("catch me outside howbouda");
-	        
+	        System.out.println(e);	        
 	    }
 	}
 	
-	public void readFileWithBuffer() {
+	public void saveBuffer() {
+		
+		    try {
+	    		FileWriter myWriter = new FileWriter("MonTexte.txt");
+		    	for( int i =0; i < list.size()-1; i++) {
+		    		myWriter.write(list.get(i).saveString());
+		    		System.out.println(i);
+		    	}
+	    		myWriter.close();
+		    } catch (IOException e) {
+		    	System.out.println("An error occurred.");
+		    	e.printStackTrace();
+		    }
+		    
+	}
+
+	public void loadBuffer() {
 		try {
 			File monFichier = new File("MonTexte.txt");
 			FileReader fr = new FileReader(monFichier);
@@ -187,6 +200,12 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 			String ligne = null;
 			while ((ligne = br.readLine()) != null) {
 				System.out.println(ligne);
+				String[] resultat = ligne.split(" ");
+				gimmeColor(resultat[0]);
+				
+				
+				
+				
 			}
 			br.close() ;
 		}
@@ -195,5 +214,42 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		}
 
 	}
-
+	
+	
+private void gimmeColor(String a) {
+	switch(a) {
+	case "Black": {
+		this.changeColor(Color.black);
+		break;
+	}
+	case "Red": {
+		this.changeColor(Color.red);
+		break;
+	}
+	case "Blue": {
+		this.changeColor(Color.blue);
+		break;
+	}
+	case "Green": {
+		this.changeColor(Color.green);
+		break;
+	}
+	case "Yellow": {
+		this.changeColor(Color.yellow);
+		break;
+	}
+	case "Pink": {
+		this.changeColor(Color.pink);
+		break;
+	}
+	case "Magenta": {
+		this.changeColor(Color.magenta);
+		break;
+	}
+	case "Orange": {
+		this.changeColor(Color.orange);
+		break;
+	}
+}
+}
 }

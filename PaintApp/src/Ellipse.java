@@ -7,6 +7,7 @@ import java.awt.Graphics;
 public class Ellipse extends Figure{
 	protected int axis1;
 	protected int axis2;
+	protected String name = "Ellipse";
 	
 	public Ellipse(int ax1, int ax2) {
 		super();
@@ -52,5 +53,18 @@ public class Ellipse extends Figure{
 	public void draw(Graphics g) {
 		g.setColor(this.c);
 		g.fillOval(this.origin.a, this.origin.b, this.axis1, this.axis2);
+	}
+	
+	public String saveString() {
+		String out = new String();
+		out+=this.getColor()+" ";
+		out+=this.name+" (";
+		out+=(String.valueOf(this.origin.a)+",");
+		out+=(String.valueOf(this.origin.b)+") (");
+		out+=(String.valueOf(this.axis1)+",");
+		out+=(String.valueOf(this.axis2)+")\n");
+
+		return out;
+		
 	}
 }

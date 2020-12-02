@@ -6,6 +6,7 @@ public class Rectangle extends Figure{
 
 	protected int width;
 	protected int length;
+	protected String name = "Rectangle";
 	
 	public Rectangle(Point org) {
 		super(org);
@@ -47,6 +48,19 @@ public class Rectangle extends Figure{
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+	
+	public String saveString() {
+		String out = new String();
+		out+=this.getColor()+" ";
+		out+=this.name+" (";
+		out+=(String.valueOf(this.origin.a)+",");
+		out+=(String.valueOf(this.origin.b)+") (");
+		out+=(String.valueOf(this.length)+",");
+		out+=(String.valueOf(this.width)+")\n");
+
+		return out;
+		
 	}
 	
 	public String toString() {
