@@ -108,7 +108,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		System.out.println(list.get(list.size()-1).saveString());
+	//	System.out.println(list.get(list.size()-1).saveString());
 	}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -180,9 +180,8 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		
 		    try {
 	    		FileWriter myWriter = new FileWriter("MonTexte.txt");
-		    	for( int i =0; i < list.size()-1; i++) {
+		    	for( int i =0; i < list.size(); i++) {
 		    		myWriter.write(list.get(i).saveString());
-		    		System.out.println(i);
 		    	}
 	    		myWriter.close();
 		    } catch (IOException e) {
@@ -193,8 +192,8 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	}
 
 	public void loadBuffer() {
+		this.list.removeAll(list);
 		try {
-			this.list.removeAll(list);
 			File monFichier = new File("MonTexte.txt");
 			FileReader fr = new FileReader(monFichier);
 			BufferedReader br = new BufferedReader(fr);
@@ -226,21 +225,22 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 					}
 				}
 
+				resultat[3] = resultat[3].substring(0, resultat[3].length()-1);
 				String[] theSize = resultat[3].split(",");
 				if(theSize.length ==1) {
-					this.xr = Integer.parseInt(theSize[0].substring(1),theSize[0].length()-1);
-					this.yr = Integer.parseInt(theSize[0].substring(1),theSize[0].length()-1);
-				}
-				else {
 					this.xr = Integer.parseInt(theSize[0].substring(1));
-					this.yr = Integer.parseInt(theSize[1].substring(0, theSize[1].length()-1));		
+					this.yr = Integer.parseInt(theSize[0].substring(1));
+				} else {
+					this.xr = Integer.parseInt(theSize[0].substring(1));
+					this.yr = Integer.parseInt(theSize[1].substring(0, theSize[1].length()));	
 				}
-				
+								
 				this.list.get(list.size()-1).setBoundingBox(Math.abs(this.xr), Math.abs(this.yr));
 				this.repaint();
 				//this.xr = Integer.parseInt(theSize[0].substring(1));
 				//this.yr = Integer.parseInt(theSize[1].substring(0, theSize[1].length()-1));
 
+				
 				
 			}
 			br.close() ;
@@ -248,7 +248,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		catch(Exception ex) {
 			ex.printStackTrace() ;
 		}
-
+		this.repaint();
 	}
 	
 	
