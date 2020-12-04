@@ -7,18 +7,25 @@ import java.awt.Graphics;
 public class Ellipse extends Figure{
 	protected int axis1;
 	protected int axis2;
-	protected String name = "Ellipse";
+	protected String name;
+	
+	public Ellipse() {
+		super();
+		this.setName("Ellipse");
+	}
 	
 	public Ellipse(int ax1, int ax2) {
 		super();
 		this.axis1 = ax1;
 		this.axis2 = ax2;
+		this.setName("Ellipse");
 	}
 	
 	public Ellipse(int px, int py, Color c) {
 		super(px,py,c);
 		this.axis1 = 0;
 		this.axis2 = 0;
+		this.setName("Ellipse");
 	}	
 	
 	public double getPerimeter() {
@@ -29,25 +36,27 @@ public class Ellipse extends Figure{
 		return 3.1415d*this.axis1*this.axis2/4;
 	}
 	
-	public double getAx1() {
+
+	
+	public int getWidth() {
 		return this.axis1;
 	}
 
-	public void setAx1(int ax1) {
+	public void setWidth(int ax1) {
 		this.axis1 = ax1;
 	}
 	
-	public double getAx2() {
+	public int getLength() {
 		return this.axis2;
 	}
 
-	public void setAx2(int ax2) {
+	public void setLength(int ax2) {
 		this.axis2 = ax2;
 	}
 
 	public void setBoundingBox(int heightBB, int widthBB) {
-		setAx1(heightBB);
-		setAx2(widthBB);
+		setWidth(heightBB);
+		setLength(widthBB);
 	}
 	
 	public void draw(Graphics g) {
@@ -66,5 +75,13 @@ public class Ellipse extends Figure{
 
 		return out;
 		
+	}
+
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String nn) {
+		this.name = nn;
 	}
 }

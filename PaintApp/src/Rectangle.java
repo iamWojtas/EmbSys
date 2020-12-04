@@ -1,23 +1,33 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Rectangle extends Figure{
+public class Rectangle extends Figure implements Serializable{
 
 
 	protected int width;
 	protected int length;
-	protected String name = "Rectangle";
+	protected String name;
+	
+	public Rectangle() {
+		super();
+		this.setLength(1);
+		this.setWidth(1);
+		this.setName("Rectangle");
+	}
 	
 	public Rectangle(Point org) {
 		super(org);
 		this.setWidth(1);
 		this.setLength(2);
+		this.setName("Rectangle");
 	}
 	
 	public Rectangle(int w, int l) {
-		super(0,0);
+		super();
 		this.setWidth(w);
 		this.setLength(l);
+		this.setName("Rectangle");
 
 	}
 	
@@ -25,7 +35,17 @@ public class Rectangle extends Figure{
 		super(px,py,c);		
 		this.setWidth(0);
 		this.setLength(0);
+		this.setName("Rectangle");
 	}
+	
+	public void setName(String nn) {
+		this.name = nn;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+
 
 	public double getPerimeter() {
 		return 2*this.length+2*this.width;
@@ -93,6 +113,7 @@ public class Rectangle extends Figure{
 		setWidth(widthBB);
 		
 	}
+	
 	
 	public void draw(Graphics g) {
 		g.setColor(this.c);

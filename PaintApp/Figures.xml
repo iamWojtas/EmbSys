@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="14.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="Rectangle" id="Rectangle0">
+    <void property="length">
+     <int>153</int>
+    </void>
+    <void id="Point0" property="origin">
+     <void property="a">
+      <int>367</int>
+     </void>
+     <void property="b">
+      <int>29</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>174</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Rectangle" id="Rectangle1">
+    <void property="c">
+     <object class="java.awt.Color" id="Color0">
+      <int>0</int>
+      <int>0</int>
+      <int>255</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void property="length">
+     <int>73</int>
+    </void>
+    <void id="Point1" property="origin">
+     <void property="a">
+      <int>558</int>
+     </void>
+     <void property="b">
+      <int>310</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>35</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Ellipse" id="Ellipse0">
+    <void property="c">
+     <object idref="Color0"/>
+    </void>
+    <void property="length">
+     <int>89</int>
+    </void>
+    <void id="Point2" property="origin">
+     <void property="a">
+      <int>601</int>
+     </void>
+     <void property="b">
+      <int>155</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>108</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Circle" id="Circle0">
+    <void property="c">
+     <object idref="Color0"/>
+    </void>
+    <void property="length">
+     <int>71</int>
+    </void>
+    <void id="Point3" property="origin">
+     <void property="a">
+      <int>271</int>
+     </void>
+     <void property="b">
+      <int>247</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>71</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Square" id="Square0">
+    <void property="c">
+     <object idref="Color0"/>
+    </void>
+    <void property="length">
+     <int>76</int>
+    </void>
+    <void id="Point4" property="origin">
+     <void property="a">
+      <int>268</int>
+     </void>
+     <void property="b">
+      <int>157</int>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Square" id="Square1">
+    <void property="c">
+     <object class="java.awt.Color" id="Color1">
+      <int>0</int>
+      <int>0</int>
+      <int>255</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void property="length">
+     <int>86</int>
+    </void>
+    <void id="Point5" property="origin">
+     <void property="a">
+      <int>146</int>
+     </void>
+     <void property="b">
+      <int>57</int>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Rectangle" id="Rectangle2">
+    <void property="c">
+     <object idref="Color1"/>
+    </void>
+    <void property="length">
+     <int>94</int>
+    </void>
+    <void id="Point6" property="origin">
+     <void property="a">
+      <int>563</int>
+     </void>
+     <void property="b">
+      <int>41</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>73</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Ellipse" id="Ellipse1">
+    <void property="c">
+     <object idref="Color1"/>
+    </void>
+    <void property="length">
+     <int>217</int>
+    </void>
+    <void id="Point7" property="origin">
+     <void property="a">
+      <int>788</int>
+     </void>
+     <void property="b">
+      <int>80</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>79</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Rectangle" id="Rectangle3">
+    <void property="c">
+     <object idref="Color1"/>
+    </void>
+    <void property="length">
+     <int>141</int>
+    </void>
+    <void id="Point8" property="origin">
+     <void property="a">
+      <int>714</int>
+     </void>
+     <void property="b">
+      <int>330</int>
+     </void>
+    </void>
+    <void property="width">
+     <int>31</int>
+    </void>
+   </object>
+  </void>
+ </object>
+ <object idref="Rectangle0"/>
+ <object idref="Point0"/>
+ <string>Black</string>
+ <object idref="Rectangle1"/>
+ <object idref="Point1"/>
+ <string>Blue</string>
+ <object idref="Ellipse0"/>
+ <object idref="Point2"/>
+ <string>Blue</string>
+ <object idref="Circle0"/>
+ <object idref="Point3"/>
+ <string>Blue</string>
+ <object idref="Square0"/>
+ <object idref="Point4"/>
+ <string>Blue</string>
+ <object idref="Square1"/>
+ <object idref="Point5"/>
+ <string>Blue</string>
+ <object idref="Rectangle2"/>
+ <object idref="Point6"/>
+ <string>Blue</string>
+ <object idref="Ellipse1"/>
+ <object idref="Point7"/>
+ <string>Blue</string>
+ <object idref="Rectangle3"/>
+ <object idref="Point8"/>
+ <string>Blue</string>
+</java>

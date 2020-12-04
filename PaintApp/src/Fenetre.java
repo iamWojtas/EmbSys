@@ -55,7 +55,19 @@ public class Fenetre extends JFrame{
 		JMenuItem LoadB = new JMenuItem("LoadB");
 		menu1.add(LoadB);
 		Listeners listenerLoadB = new Listeners(myDrawing,this);
-		LoadB.addActionListener(listenerLoadB);
+		LoadB.addActionListener(listenerLoadB);		
+		
+		menu1.addSeparator();
+		
+		JMenuItem SaveXML = new JMenuItem("SaveXML");
+		menu1.add(SaveXML);
+		Listeners listenerSaveXML = new Listeners(myDrawing,this);
+		SaveXML.addActionListener(listenerSaveXML);
+		
+		JMenuItem LoadXML = new JMenuItem("LoadXML");
+		menu1.add(LoadXML);
+		Listeners listenerLoadXML = new Listeners(myDrawing,this);
+		LoadXML.addActionListener(listenerLoadXML);
 		
 		
 		menu1.addSeparator();

@@ -5,6 +5,10 @@ public class Circle extends Ellipse {
 	
 	protected String name = "Circle";
 	
+	public Circle() {
+		super();
+	}
+	
 	public Circle(int radius) {
 		super(radius,radius);
 	}

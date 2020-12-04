@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Listeners implements ActionListener {
 
@@ -92,6 +94,28 @@ public class Listeners implements ActionListener {
 		}
 		else if(cmd.equals("LoadB")) {
 			myDrawing.loadBuffer();
+		}
+		else if(cmd.equals("SaveXML")) {
+			try {
+				myDrawing.saveXML(myDrawing.getFileName());
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		else if(cmd.equals("LoadXML")) {
+			try {
+				myDrawing.loadXML(myDrawing.getFileName());
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		else {
 			System.err.println(cmd);

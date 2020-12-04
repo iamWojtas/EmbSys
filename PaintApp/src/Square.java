@@ -3,14 +3,31 @@ import java.awt.Graphics;
 
 public class Square extends Rectangle{
 	
-	protected String name = "Square";
+	protected String name;
+	
+
+	public Square() {
+		super();
+		this.setName("Square");
+	}
 	
 	public Square(int w) {
 		super(w, w);
+		this.setName("Square");
 	}
 	
 	public Square(int px, int py, Color co) {
 		super(px,py,co);
+		this.setName("Square");
+	}
+	
+	
+	public void setName(String nn) {
+		this.name = nn;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public void setWidth(int a) {
@@ -23,6 +40,15 @@ public class Square extends Rectangle{
 		this.length = a;
 	}
 
+
+	public int getLength() {
+		return length;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
 	public void setBoundingBox(int heightBB, int widthBB) {
 		setLength(widthBB);
 		setWidth(widthBB);

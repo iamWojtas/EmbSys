@@ -2,15 +2,22 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.beans.ExceptionListener;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +26,13 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Drawing extends JPanel implements MouseListener, MouseMotionListener{
+public class Drawing extends JPanel implements MouseListener, MouseMotionListener, Serializable{
 	Drawing(){
 		super();
 		
 		c = Color.black;
 		this.nameFigure = "Rectangle";
+		this.fileName = "Figures.xml";
 		this.list = new ArrayList<Figure>();
 		
 	}
@@ -46,6 +54,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	private ArrayList<Figure> list;
 	private Color c;
 	private String nameFigure;
+	private String fileName;
 	private int xc;
 	private int yc;
 
@@ -56,7 +65,9 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		this.list.removeAll(list);
 		this.repaint();
 	}
-	
+	public String getFileName() {
+		return this.fileName;
+	}
 	public void changeColor(Color cc){
 		this.c = cc;
 	}
@@ -251,41 +262,81 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		this.repaint();
 	}
 	
+		
+	public void saveXML(String fileName) throws FileNotFoundException, IOException {
+	    XMLEncoder encoder = new XMLEncoder(new FileOutputStream(fileName));
+	    try {
+	    	encoder.writeObject(list);
+	    	for (Figure f:list)
+	    		{encoder.writeObject(f);
+	    		encoder.writeObject(f.getOrigin());
+	    		encoder.writeObject(f.getColor());
+	    	}
+	        encoder.flush();
+	    } finally {
+	        encoder.close();
+	    } 
+	}
+
+
+	public void loadXML(String fileName) throws FileNotFoundException, IOException {
+
+		int l = 0;
+		int w = 0;
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+		ExceptionListener listener = null;
+		XMLDecoder dec = new XMLDecoder(new FileInputStream(fileName));
+		list = (ArrayList<Figure>) dec.readObject();
+			
+		for (Figure f:list) {
+			f = (Figure) (dec.readObject());
+			f.setOrigin((Point) (dec.readObject()));
+			f.setColor((String) (dec.readObject()));
+			f.draw(getGraphics());
+		}
+		this.repaint();
+		dec.close();
+	} 
 	
-private void gimmeColor(String a) {
-	switch(a) {
-	case "Black": {
-		this.changeColor(Color.black);
-		break;
+	
+	
+	
+	private void gimmeColor(String a) {
+		switch(a) {
+			case "Black": {
+				this.changeColor(Color.black);
+				break;
+			}
+			case "Red": {
+				this.changeColor(Color.red);
+				break;
+			}
+			case "Blue": {
+				this.changeColor(Color.blue);
+				break;
+			}
+			case "Green": {
+				this.changeColor(Color.green);
+				break;
+			}
+			case "Yellow": {
+				this.changeColor(Color.yellow);
+				break;
+			}
+			case "Pink": {
+				this.changeColor(Color.pink);
+				break;
+			}
+			case "Magenta": {
+				this.changeColor(Color.magenta);
+				break;
+			}
+			case "Orange": {
+				this.changeColor(Color.orange);
+				break;
+			}
+		}
 	}
-	case "Red": {
-		this.changeColor(Color.red);
-		break;
-	}
-	case "Blue": {
-		this.changeColor(Color.blue);
-		break;
-	}
-	case "Green": {
-		this.changeColor(Color.green);
-		break;
-	}
-	case "Yellow": {
-		this.changeColor(Color.yellow);
-		break;
-	}
-	case "Pink": {
-		this.changeColor(Color.pink);
-		break;
-	}
-	case "Magenta": {
-		this.changeColor(Color.magenta);
-		break;
-	}
-	case "Orange": {
-		this.changeColor(Color.orange);
-		break;
-	}
-}
-}
 }

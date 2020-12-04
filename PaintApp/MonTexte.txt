@@ -1,2 +1,3 @@
-Black Square (337,80) (182)
-Black Circle (622,151) (182)
+Black Rectangle (155,49) (155,93)
+Black Rectangle (169,158) (82,52)
+Black Rectangle (122,25) (236,15)
