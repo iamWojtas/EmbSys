@@ -263,18 +263,18 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	
 		
 	public void saveXML(String fileName) throws FileNotFoundException, IOException {
-	    XMLEncoder encoder = new XMLEncoder(new FileOutputStream(fileName));
+	    XMLEncoder myEncoder = new XMLEncoder(new FileOutputStream(fileName));
 	    try {
-	    	encoder.writeObject(list);
+	    	myEncoder.writeObject(list);
 	    	for (Figure f:list)
-	    		{encoder.writeObject(f);
-	    		encoder.writeObject(f.getOrigin());
-	    		encoder.writeObject(f.getColor());
+	    		{myEncoder.writeObject(f);
+	    		myEncoder.writeObject(f.getOrigin());
+	    		myEncoder.writeObject(f.getColor());
 	    	}
-	        encoder.flush();
+	    	myEncoder.flush();
 			System.out.println("The image was saved to a XML file");
 	    } finally {
-	        encoder.close();
+	    	myEncoder.close();
 	    } 
 	}
 
@@ -288,18 +288,18 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 //		ByteArrayOutputStream out = new ByteArrayOutputStream();
 //		ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
 //		ExceptionListener listener = null;
-		XMLDecoder dec = new XMLDecoder(new FileInputStream(fileName));
-		list = (ArrayList<Figure>) dec.readObject();
+		XMLDecoder myDecoder = new XMLDecoder(new FileInputStream(fileName));
+		list = (ArrayList<Figure>) myDecoder.readObject();
 			
 		for (Figure f:list) {
-			f = (Figure) (dec.readObject());
-			f.setOrigin((Point) (dec.readObject()));
-			f.setColor((String) (dec.readObject()));
+			f = (Figure) (myDecoder.readObject());
+			f.setOrigin((Point) (myDecoder.readObject()));
+			f.setColor((String) (myDecoder.readObject()));
 			f.draw(getGraphics());
 		}
 		this.repaint();
 		System.out.println("The image was loaded from a XML file");
-		dec.close();
+		myDecoder.close();
 	} 
 	
 	private void gimmeColor(String a) {

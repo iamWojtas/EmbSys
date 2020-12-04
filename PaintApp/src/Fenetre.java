@@ -13,7 +13,7 @@ public class Fenetre extends JFrame{
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(0,200);
-		setSize(1000,500);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		Container contentPane = getContentPane();
 		JMenuBar m = new JMenuBar();
@@ -85,8 +85,6 @@ public class Fenetre extends JFrame{
 		LoadXML.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 
 		m.add(menu1);
-		
-		
 		
 		JMenu menu2 = new JMenu("About");
 		JMenuItem Authors = new JMenuItem("Authors");
