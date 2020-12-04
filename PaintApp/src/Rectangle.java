@@ -5,6 +5,10 @@ import java.io.Serializable;
 public class Rectangle extends Figure implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int width;
 	protected int length;
 	protected String name;

@@ -2,12 +2,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.beans.ExceptionListener;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,14 +16,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.print.attribute.standard.OutputDeviceAssigned;
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Drawing extends JPanel implements MouseListener, MouseMotionListener, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Drawing(){
 		super();
 		
@@ -195,6 +192,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 		    		myWriter.write(list.get(i).saveString());
 		    	}
 	    		myWriter.close();
+				System.out.println("The image was saved to a readable text file");
 		    } catch (IOException e) {
 		    	System.out.println("An error occurred.");
 		    	e.printStackTrace();
@@ -210,7 +208,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 			BufferedReader br = new BufferedReader(fr);
 			String ligne = null;
 			while ((ligne = br.readLine()) != null) {
-				System.out.println(ligne);
+				//System.out.println(ligne);
 				String[] resultat = ligne.split(" ");
 				gimmeColor(resultat[0]);
 				String[] oregon = resultat[2].split(",");
@@ -255,6 +253,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 				
 			}
 			br.close() ;
+			System.out.println("The image was loaded from a readable text file");
 		}
 		catch(Exception ex) {
 			ex.printStackTrace() ;
@@ -273,20 +272,22 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	    		encoder.writeObject(f.getColor());
 	    	}
 	        encoder.flush();
+			System.out.println("The image was saved to a XML file");
 	    } finally {
 	        encoder.close();
 	    } 
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public void loadXML(String fileName) throws FileNotFoundException, IOException {
 
-		int l = 0;
-		int w = 0;
+//		int l = 0;
+//		int w = 0;
 
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-		ExceptionListener listener = null;
+//		ByteArrayOutputStream out = new ByteArrayOutputStream();
+//		ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+//		ExceptionListener listener = null;
 		XMLDecoder dec = new XMLDecoder(new FileInputStream(fileName));
 		list = (ArrayList<Figure>) dec.readObject();
 			
@@ -297,11 +298,9 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 			f.draw(getGraphics());
 		}
 		this.repaint();
+		System.out.println("The image was loaded from a XML file");
 		dec.close();
 	} 
-	
-	
-	
 	
 	private void gimmeColor(String a) {
 		switch(a) {

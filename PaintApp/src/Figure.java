@@ -1,12 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public abstract class Figure implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Point origin;
 	protected Color c;
 	protected String color;

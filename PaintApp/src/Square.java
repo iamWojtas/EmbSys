@@ -3,6 +3,10 @@ import java.awt.Graphics;
 
 public class Square extends Rectangle{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String name;
 	
 

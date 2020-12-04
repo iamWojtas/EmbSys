@@ -1,15 +1,14 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 public class Fenetre extends JFrame{
-	private Drawing myDrawing;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+
+	@SuppressWarnings("deprecation")
 	Fenetre(String title){
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,13 +19,13 @@ public class Fenetre extends JFrame{
 		JMenuBar m = new JMenuBar();
 		
 		Drawing myDrawing = new Drawing();
+		
 		myDrawing.addMouseListener(myDrawing);
 		myDrawing.addMouseMotionListener(myDrawing);
 		contentPane.add(myDrawing,"Center");
 		
 		JMenu menu1 = new JMenu("Files");
-		JMenuItem Open = new JMenuItem("Open");
-		menu1.add(Open);
+
 		
 		JMenuItem New = new JMenuItem("New");
 		Listeners listenerNew = new Listeners(myDrawing);
@@ -77,17 +76,23 @@ public class Fenetre extends JFrame{
 		Listeners listenerQuit = new Listeners(myDrawing);
 		Quit.addActionListener(listenerQuit);
 		
+		New.setAccelerator(KeyStroke.getKeyStroke('Z', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 		Save.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
-		Load.setAccelerator(KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
-		SaveB.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
-		LoadB.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		Load.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		SaveB.setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		LoadB.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		SaveXML.setAccelerator(KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
+		LoadXML.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(),false));
 
 		m.add(menu1);
 		
 		
 		
 		JMenu menu2 = new JMenu("About");
-		menu2.add(new JMenuItem("Authors"));
+		JMenuItem Authors = new JMenuItem("Authors");
+		menu2.add(Authors);
+		Listeners listenerAuthors = new Listeners(myDrawing,this);
+		Authors.addActionListener(listenerAuthors);
 		m.add(menu2);
 		setJMenuBar(m);
 		
@@ -201,10 +206,6 @@ public class Fenetre extends JFrame{
 		
 	}
 	
-
-	public void changeDrawing(Drawing d) {
-		this.myDrawing = d;
-	}
 
 }
 

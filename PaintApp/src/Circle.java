@@ -3,6 +3,10 @@ import java.awt.Graphics;
 
 public class Circle extends Ellipse {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String name = "Circle";
 	
 	public Circle() {
